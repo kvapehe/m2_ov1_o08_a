@@ -2,13 +2,12 @@ let sensorverdi_raw = 0
 /**
  * I ioopgaven spørres det om effekten å gange med andre tall enn to.
  * 
- * VEl 2 er dobling av verdi for hver måling og dermed dobling av tall som vises som frekvens. IOm en ganger med 10 så blir verdien ti-doblet. Da vil mørkt lys bli representert med en rimelig lys tone, mens fult lys blir en "svært" høy frekvens. Det er ikke kjekt å lage frekvensen 2550 Hz, men prøv gjerne.
+ * Vel 2 er dobling av verdi for hver måling og dermed dobling av tall som vises som frekvens. IOm en ganger med 10 så blir verdien ti-doblet. Da vil mørkt lys bli representert med en rimelig lys tone, mens fult lys blir en "svært" høy frekvens. Det er ikke kjekt å lage frekvensen 2550 Hz, men prøv gjerne.
  */
 basic.forever(function () {
     sensorverdi_raw = input.lightLevel() * 1
     // Erstatter vising av tall.
-    // Verdier lys er fra 0 - 255 der lysest er 255. DEtte kan visees som 0% - 100%. Denne testen viser verdier mellom 80 og 135 som ok-lys eller 
-    // Mi (Mi er Middel)
+    // Verdier lys er fra 0 - 255 der lysest er 255. DEtte kan visees som 0% - 100%. Denne testen viser verdier mellom 80 og 135 som ok-lys eller Mi (Mi er Middel)
     // 
     // Alt under8 er M som betyr Mørkdt
     // OG alt over er Ly som betyr lyst.
@@ -38,7 +37,5 @@ basic.forever(function () {
             # . . . #
             `)
     }
-    // Microbit kan kun vise et tall / tegn av gange, men å vise tal med f.eks. tone er en metode som ofte brukes for å vise et tall. Avstandssenorer kan blant annet bruke slik varsling.
-    basic.showNumber(sensorverdi_raw)
-    music.playTone(sensorverdi_raw, music.beat(BeatFraction.Double))
+    music.playTone(sensorverdi_raw, music.beat(BeatFraction.Eighth))
 })
